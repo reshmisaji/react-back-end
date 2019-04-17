@@ -17,8 +17,11 @@ const renderHomePage = function(req, res) {
     res.send(JSON.stringify(data));
   });
 };
+
 const PORT = process.env.PORT || 8080;
-app.get("/", renderHomePage);
+app.use(Express.static('react-front-end/build'));
+app.get("/flowers", renderHomePage);
+
 app.listen(PORT, () => {
   console.log("listening at port: ", PORT);
 });
