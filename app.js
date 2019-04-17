@@ -1,22 +1,21 @@
 const Express = require("express");
-// const mysql = require("mysql");
+const mysql = require("mysql");
 
-// const connection = mysql.createConnection({
-//   host: "localhost",
-//   user: "user",
-//   password: "user",
-//   database: "practice"
-// });
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+});
 
-// connection.connect(err => console.log(err));
+connection.connect(err => console.log(err));
 
 const app = new Express();
 
 const renderHomePage = function(req, res) {
-  // connection.query("select * from flowers;", (error, data, fields) => {
-    // console.log(data);
-    res.send(JSON.stringify([{ id: 1, flower_name: 'Rose', color: 'Red' }]));
-  // });
+  connection.query("select * from flowers;", (error, data, fields) => {
+    res.send(JSON.stringify(data));
+  });
 };
 
 const PORT = process.env.PORT || 8080;
