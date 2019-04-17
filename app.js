@@ -18,7 +18,7 @@ const renderHomePage = function(req, res) {
   });
 };
 const PORT = process.env.PORT || 8080;
-app.get("/flowers", renderHomePage);
+app.get("/", renderHomePage);
 app.listen(PORT, () => {
   console.log("listening at port: ", PORT);
 });
